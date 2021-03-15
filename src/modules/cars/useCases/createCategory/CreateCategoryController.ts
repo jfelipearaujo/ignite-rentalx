@@ -4,7 +4,7 @@ import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 class CreateCategoryController {
   constructor(private createCategoryUseCase: CreateCategoryUseCase) {
-    // CreateCategoryController
+    // Controller
   }
 
   handle(request: Request, response: Response): Response {

@@ -7,7 +7,7 @@ interface IRequest {
 
 class CreateCategoryUseCase {
   constructor(private categoriesRepository: ICategoriesRepository) {
-    // CreateCategoryService
+    // UseCase
   }
 
   execute({ name, description }: IRequest): void {

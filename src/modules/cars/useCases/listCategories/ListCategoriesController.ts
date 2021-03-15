@@ -4,7 +4,7 @@ import { ListCategoriesUseCase } from "./ListCategoriesUseCase";
 
 class ListCategoriesController {
   constructor(private listCategoriesUseCase: ListCategoriesUseCase) {
-    // ListCategoriesController
+    // Controller
   }
 
   handle(request: Request, response: Response): Response {
