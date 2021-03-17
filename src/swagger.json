@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RentalX API Documentation",
+    "description": "This is an Rent API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "j.felipe.araujo@outlook.com"
+    }
+  }
+}
