@@ -15,3 +15,12 @@ executa os containers
 
 desmonta os containers
 > docker-compose down
+
+cria uma migration
+> yarn typeorm migration:create -n MIGRATION_NAME
+
+executa as migrations
+> yarn typeorm migration:run
+
+reverte as migrations
+> yarn typeorm migration:revert
