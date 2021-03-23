@@ -1,5 +1,5 @@
 obtem o ip atribuido no container
-> docker exec CONTAINER_NAME cat /etc/hosts
+> docker exec database_ignite cat /etc/hosts
 
 lista os containers
 > docker ps -a
