@@ -1,0 +1,17 @@
+obtem o ip atribuido no container
+> docker exec CONTAINER_NAME cat /etc/hosts
+
+lista os containers
+> docker ps -a
+
+executa o docker-compose.yml
+> docker-compose up --force-recreate -d
+
+para os containers
+> docker-compose stop
+
+executa os containers
+> docker-compose start
+
+desmonta os containers
+> docker-compose down
