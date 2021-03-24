@@ -1,0 +1,59 @@
+import { compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
+import { inject, injectable } from "tsyringe";
+
+import { IUsersRepository } from "../../repositories/IUsersRepository";
+
+interface IRequest {
+  email: string;
+  password: string;
+}
+
+interface IResponse {
+  user: {
+    name: string;
+    email: string;
+  };
+  token: string;
+}
+
+@injectable()
+class AuthenticateUserUseCase {
+  constructor(
+    @inject("UsersRepository")
+    private usersRepository: IUsersRepository
+  ) {
+    // UseCase
+  }
+
+  async execute({ email, password }: IRequest): Promise<IResponse> {
+    const user = await this.usersRepository.findByEmail(email);
+
+    if (!user) {
+      throw new Error("E-mail or password incorrect");
+    }
+
+    const isPasswordValid = await compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new Error("E-mail or password incorrect");
+    }
+
+    const token = sign({}, "93dfcaf3d923ec47edb8580667473987", {
+      subject: user.id,
+      expiresIn: "1d",
+    });
+
+    const tokenData: IResponse = {
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+      token,
+    };
+
+    return tokenData;
+  }
+}
+
+export { AuthenticateUserUseCase };
