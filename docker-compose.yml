@@ -3,18 +3,16 @@ version: "3.7"
 services:
   database:
     image: postgres
-    container_name: db_rentalx
+    container_name: database_rentalx
     restart: always
     ports:
       - 5432:5432
     environment: 
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=ignite
-      - POSTGRES_DB=db_rentalx
+      - POSTGRES_DB=rentalx
     volumes:
       - pgdata:/data/postgres
-    networks:
-      - app-network
 
   app:
     build: .
@@ -25,12 +23,10 @@ services:
       - 9229:9229
     volumes:
       - .:/usr/app
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    links: 
+      - database
+    depends_on:
+      - database
 
 volumes:
   pgdata:
