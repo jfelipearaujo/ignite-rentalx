@@ -4,17 +4,17 @@ import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
 import { CategoriesRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepository: ICategoriesRepository;
+let createCategoryUseCase: CreateCategoryUseCase;
 
 describe("Create Category", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     categoriesRepository = new CategoriesRepositoryInMemory();
 
     createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
   });
 
-  it("Should be able to create a new category", async () => {
+  it("should be able to create a new category", async () => {
     const category = {
       name: "Category Test",
       description: "Category Test Description",
@@ -33,7 +33,7 @@ describe("Create Category", () => {
     expect(description).toBe(category.description);
   });
 
-  it("Should not be able to create a new category with a already used name", async () => {
+  it("should not be able to create a new category with a already used name", async () => {
     const expectedError = new AppError(
       "Category already exists",
       HttpStatusCode.BAD_REQUEST

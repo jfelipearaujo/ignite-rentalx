@@ -34,7 +34,7 @@ class AuthenticateUserUseCase {
     if (!user) {
       throw new AppError(
         "E-mail or password incorrect",
-        HttpStatusCode.BAD_REQUEST
+        HttpStatusCode.UNAUTHORIZED
       );
     }
 
@@ -43,7 +43,7 @@ class AuthenticateUserUseCase {
     if (!isPasswordValid) {
       throw new AppError(
         "E-mail or password incorrect",
-        HttpStatusCode.BAD_REQUEST
+        HttpStatusCode.UNAUTHORIZED
       );
     }
 
