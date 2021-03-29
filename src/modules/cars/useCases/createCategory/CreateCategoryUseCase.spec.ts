@@ -1,7 +1,8 @@
-import { AppError } from "../../../../errors/AppError";
-import { HttpStatusCode } from "../../../../errors/HttpStatusCode";
-import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
-import { CategoriesRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
+import { AppError } from "@errors/AppError";
+import { HttpStatusCode } from "@errors/HttpStatusCode";
+import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
+import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory";
+
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 let categoriesRepository: ICategoriesRepository;
