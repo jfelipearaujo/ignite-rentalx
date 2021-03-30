@@ -7,9 +7,6 @@ class Category {
   id?: string;
 
   @Column()
-  teste: string;
-
-  @Column()
   name: string;
 
   @Column()
