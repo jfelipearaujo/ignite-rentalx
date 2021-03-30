@@ -2,7 +2,6 @@
 
 > Requisitos Funcionais
 - Deve ser possível cadastrar um novo veículo
-- Deve ser possível listar todas as categorias
 
 > Requisitos Não Funcionais
 - N/A
