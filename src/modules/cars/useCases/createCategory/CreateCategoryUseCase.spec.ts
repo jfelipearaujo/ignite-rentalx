@@ -1,7 +1,7 @@
-import { AppError } from "@errors/AppError";
-import { HttpStatusCode } from "@errors/HttpStatusCode";
 import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
 import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory";
+import { AppError } from "@shared/errors/AppError";
+import { HttpStatusCode } from "@shared/errors/HttpStatusCode";
 
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
