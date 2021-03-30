@@ -8,7 +8,6 @@
 
 > Regras de Negócio
 - Não deve ser possível cadastrar um veículo com uma placa já existente
-- Não deve ser possível alterar a placa de um veículo já cadastrado
 - O veículo deve ser cadastrado com a disponibilidade habilitada por padrão
 - Não deve ser possível o cadastro por um usuário sem acesso de administrador
 

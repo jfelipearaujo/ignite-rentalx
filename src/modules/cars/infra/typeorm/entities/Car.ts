@@ -26,9 +26,9 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidv4();
+      this.available = true;
+      this.created_at = new Date();
     }
-
-    this.available = true;
   }
 }
 
