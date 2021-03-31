@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
 import { AppError } from "@shared/errors/AppError";
 import { HttpStatusCode } from "@shared/errors/HttpStatusCode";
 
@@ -13,7 +14,10 @@ interface IRequest {
 class CreateCarSpecificationUseCase {
   constructor(
     @inject("CarsRepository")
-    private carsRepository: ICarsRepository
+    private carsRepository: ICarsRepository,
+
+    @inject("SpecificationsRepository")
+    private specificationsRepository: ISpecificationsRepository
   ) {
     // UseCase
   }
@@ -24,6 +28,14 @@ class CreateCarSpecificationUseCase {
     if (!car) {
       throw new AppError("Car not found", HttpStatusCode.NOT_FOUND);
     }
+
+    const specifications = await this.specificationsRepository.findByIds(
+      specifications_id
+    );
+
+    car.specifications = specifications;
+
+    await this.carsRepository.create(car);
   }
 }
 
