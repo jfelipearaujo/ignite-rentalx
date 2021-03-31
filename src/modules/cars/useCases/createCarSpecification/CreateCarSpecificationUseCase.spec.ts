@@ -64,14 +64,19 @@ describe("Create Car-Specification", () => {
       category_id: "category",
     });
 
-    const specifications_id = ["4321"];
+    const specification = await specificationsRepository.create({
+      name: "Specification Name",
+      description: "Specification Description",
+    });
 
     // Act
-    await createCarSpecificationUseCase.execute({
+    const carSpecification = await createCarSpecificationUseCase.execute({
       car_id: car.id,
-      specifications_id,
+      specifications_id: [specification.id],
     });
 
     // Assert
+    expect(car.specifications).toEqual([specification]);
+    expect(car).toMatchObject(carSpecification);
   });
 });
