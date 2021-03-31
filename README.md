@@ -29,8 +29,6 @@
 
 > Requisitos Funcionais
 - Deve ser possível cadastrar uma especificação para um veículo
-- Deve ser possível listar todas as especificações
-- Deve ser possível listar todos os veículos
 
 > Requisitos Não Funcionais
 - N/A
