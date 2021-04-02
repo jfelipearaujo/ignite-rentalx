@@ -1,7 +1,9 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppError";
 import { HttpStatusCode } from "@shared/errors/HttpStatusCode";
 
@@ -18,7 +20,10 @@ class CreateRentalUseCase {
     private carsRepository: ICarsRepository,
 
     @inject("RentalsRepository")
-    private rentalsRepository: IRentalsRepository
+    private rentalsRepository: IRentalsRepository,
+
+    @inject("DateProvider")
+    private dateProvider: IDateProvider
   ) {
     // UseCase
   }
@@ -27,11 +32,13 @@ class CreateRentalUseCase {
     user_id,
     car_id,
     expected_return_date,
-  }: IRequest): Promise<void> {
+  }: IRequest): Promise<Rental> {
+    const MINIMUM_HOURS_TO_RETURN = 24;
+
     const car = await this.carsRepository.findById(car_id);
 
     if (!car) {
-      throw new AppError("Car not found", HttpStatusCode.NOT_FOUND);
+      throw new AppError("Car not found", HttpStatusCode.BAD_REQUEST);
     }
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCarId(
@@ -52,6 +59,28 @@ class CreateRentalUseCase {
         HttpStatusCode.BAD_REQUEST
       );
     }
+
+    const dateNow = this.dateProvider.dateNow();
+
+    const compare = this.dateProvider.compareInHours(
+      dateNow,
+      expected_return_date
+    );
+
+    if (compare < MINIMUM_HOURS_TO_RETURN) {
+      throw new AppError(
+        "The rental must have a minimum duration of 24 hours",
+        HttpStatusCode.BAD_REQUEST
+      );
+    }
+
+    const rental = await this.rentalsRepository.create({
+      user_id,
+      car_id,
+      expected_return_date,
+    });
+
+    return rental;
   }
 }
 

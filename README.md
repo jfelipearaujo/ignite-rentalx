@@ -62,3 +62,4 @@
 - O alugel deve ter duração mínima de 24 horas
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo veículo
+- Não deve ser possível o cadastro por um usuário sem acesso de administrador
