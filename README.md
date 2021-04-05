@@ -63,3 +63,20 @@
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo veículo
 - Não deve ser possível o cadastro por um usuário sem acesso de administrador
+- Ao realizar o aluguel, o status do veículo deverá ser alterado para indisponível
+
+# Devolução do veículo
+
+> Requisitos Funcionais
+- Deve ser possível realizar a devolução de um veículo
+
+> Requisitos Não Funcionais
+- N/A
+
+> Regras de Negócio
+- Se o veículo for devolvido com menos de 24 horas, deverá ser cobrado diária completa
+- Ao realizar a devolução o veículo deverá ser liberado para outro aluguel
+- Ao realizar a devolução o usuário deverá ser liberado para outro aluguel
+- Ao realizar a devolução deverá ser calculado o total do aluguel
+- Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso
+- Caso haja multa deverá ser somado ao total do aluguel
