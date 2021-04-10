@@ -81,3 +81,14 @@
 - Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso
 - Caso haja multa deverá ser somado ao total do aluguel
 - Não deve ser possível o cadastro por um usuário sem acesso
+
+# Listagem de alugueis
+
+> Requisitos Funcionais
+- Deve ser possível realizar a busca de todos os alugueis para o usuário
+
+> Requisitos Não Funcionais
+- N/A
+
+> Regras de Negócio
+- O usuário deve estar logado na aplicação
